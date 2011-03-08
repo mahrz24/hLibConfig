@@ -140,14 +140,14 @@ nameRegexp = "^[A-Za-z\\*][-A-Za-z0-9_\\*]*"
 integerRegexp =	"^[-+]?[0-9]+"
 integer64Regexp = "^[-+]?[0-9]+L(L)?" 
 hexRegexp = "^0[Xx][0-9A-Fa-f]+" 
-hex64Regexp =	"^0[Xx][0-9A-Fa-f]+L(L)?" 
-floatRegexp =	"^([-+]?([0-9]*)?\\.[0-9]*([eE][-+]?[0-9]+)?)|([-+]([0-9]+)(\\.[0-9]*)?[eE][-+]?[0-9]+)"
+hex64Regexp = "^0[Xx][0-9A-Fa-f]+L(L)?" 
+floatRegexp = "^([-+]?([0-9]*)?\\.[0-9]*([eE][-+]?[0-9]+)?)|([-+]([0-9]+)(\\.[0-9]*)?[eE][-+]?[0-9]+)"
 
 lexRegexp cs =
   let i = (cs =~boolRegexp) :: String
       l = length i
   in if l /= 0 then
-       TokenBool (read i) : (lexer $ drop l cs)
+       TokenBool (read ((toUpper $ head i):tail i) ) : (lexer $ drop l cs)
      else let i = (cs =~stringRegexp) :: String
               l = length i
           in if l /= 0 then
