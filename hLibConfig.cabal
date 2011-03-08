@@ -1,0 +1,20 @@
+Name:                hlibconfig
+Version:             0.1
+License:	     MIT
+License-file:	     LICENSE
+Author:              Malte Harder <malte.harder@gmail.com>
+Maintainer:          Malte Harder <malte.harder@gmail.com>
+Category:	     Data
+Synopsis:	     A libconfig configuration file parser
+
+Stability:	     unstable
+Build-Type:          Simple
+Cabal-Version:       >=1.8
+
+Extra-Source-Files:  LICENSE,
+		     
+Library
+  Hs-Source-Dirs:   src
+  Build-Depends:    base >= 3 && < 5,          
+                    containers
+  Exposed-Modules:  Data.HLibConfig
