@@ -11,15 +11,33 @@ module Data.HLibConfig
        , intValue   
        , floatValue
        , stringValue
+       , stringForest
        ) where
 
 import Data.HLibConfig.Grammar
 import Text.Printf
 import Data.List.Split
 import Data.List
+import Data.Tree
 
 readConfig :: String -> Configuration
 readConfig = configParse . lexer
+
+stringForest :: Configuration -> Forest String
+stringForest c = map settingToNode c
+
+settingToNode :: Setting -> Tree String
+settingToNode (Setting name val) = Node { rootLabel = name
+                                        , subForest = valueToForest val }
+                                   
+valueToForest :: Value -> Forest String
+valueToForest (ScalarValue sv) = [scalarNode sv]
+valueToForest (Array sv) = map scalarNode sv
+valueToForest (List v) = concatMap valueToForest v
+valueToForest (Group set) = map settingToNode set
+
+scalarNode sv = Node { rootLabel = stringValue sv
+                     , subForest = []}
 
 boolValue :: ScalarValue -> Bool
 boolValue (ScalarBool a) = a

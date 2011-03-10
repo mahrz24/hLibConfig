@@ -550,7 +550,7 @@ lexer (c:cs)
       | isSpace c = lexer cs
       | otherwise = lexRegexp (c:cs)
                     
-boolRegexp = "^([Tt][Rr][Uu][Ee])|([Ff][Aa][Ll][Ss][Ee])"
+boolRegexp = "^(([Tt][Rr][Uu][Ee])|([Ff][Aa][Ll][Ss][Ee]))"
 stringRegexp = "^\\\"([^\\\"\\\\]|\\\\.)*\\\""
 nameRegexp = "^[A-Za-z\\*][-A-Za-z0-9_\\*]*"
 integerRegexp =	"^[-+]?[0-9]+"
